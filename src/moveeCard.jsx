@@ -4,9 +4,14 @@ import './App.css'
 
 export default function Card(props){
 
+    const { movie } = props;
+
+    const handleClick = () => {
+        props.onOpenDetailBox(movie);
+    };
 
     return(
-        <div className="movie-card flex bg-purple-200 h-72 w-52 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+        <div onClick={handleClick} className="movie-card flex bg-purple-200 h-72 w-52 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
             <img src={props.poster} className="poster rounded-lg w-full h-full object-cover" />
                     <div className="info-card text-white rounded-lg">
                          <div onClick={()=>{

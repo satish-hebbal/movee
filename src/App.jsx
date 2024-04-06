@@ -5,13 +5,24 @@ import './App.css'
 import Card from './moveeCard'
 import FavCard from './favMovieCard'
 import Nav from './moveeNav'
-
+import DetailBox from './details.jsx'
 
 function App() {
   // const [count, setCount] = useState(0)
   const [movies, setMovies] = useState([])
   const[search, setSeacrh] = useState('john wick')
   const[favs, setFavs] = useState([])
+  const [isDetailBoxOpen, setIsDetailBoxOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const handleOpenDetailBox = (movie) => {
+    setSelectedMovie(movie);
+    setIsDetailBoxOpen(true);
+  };
+
+  const handleCloseDetailBox = () => {
+    setIsDetailBoxOpen(false);
+  };
   
   const handleSearch=(e)=>{
     setSeacrh(e.target.value)
@@ -67,6 +78,8 @@ function App() {
     <>
       <Nav handleSearch={handleSearch}/>
       
+      {isDetailBoxOpen && <DetailBox movie={selectedMovie} onClose={handleCloseDetailBox} />}
+
       <h1 className='font-mono'>namaste</h1>
       
   
@@ -76,7 +89,7 @@ function App() {
         {
            movies.map((movie) => (
             <div key={movie.imdbID}>
-              <Card addFav={addToFav} movieObj={movie} poster={movie.Poster} title={movie.Title} movieId={movie.imdbID} />
+              <Card addFav={addToFav} onOpenDetailBox={handleOpenDetailBox} movieObj={movie} poster={movie.Poster} title={movie.Title} movieId={movie.imdbID} />
               <h1 className='text-white'>{movie.imdbID}</h1>
             </div>
            ))
@@ -91,7 +104,7 @@ function App() {
         {
           favs.map((fav) => (
             <div key={fav.imdbID}>
-              <FavCard remove={removeFav} movieObj={fav} poster={fav.Poster} title={fav.Title} movieId={fav.imdbID} />
+              <FavCard remove={removeFav} onOpenDetailBox={handleOpenDetailBox} movieObj={fav} poster={fav.Poster} title={fav.Title} movieId={fav.imdbID} />
             </div>
           ))
         }

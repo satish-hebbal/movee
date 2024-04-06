@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import './App.css'
 
 
-export default function Card(props){
+export default function FavCard(props){
 
 
     return(
@@ -10,9 +10,9 @@ export default function Card(props){
             <img src={props.poster} className="poster rounded-lg w-full h-full object-cover" />
                     <div className="info-card text-white rounded-lg">
                          <div onClick={()=>{
-                            props.addFav(props.movieObj)
+                            props.remove(props.movieId)
                          }} className="flex items-center justify-center absolute top-0 h-10 right-2 cursor-pointer px-2 py-1 shadow-lg shadow-black active:bg-red-700 transition-bg duration-50 ease-in-out bg-red-950 bg-opacity-50 rounded-full ">
-                            <span className=" material-icons fill-current orange600 material-symbols-outlined">favorite</span>
+                            <span className=" material-icons fill-current orange600 material-symbols-outlined">delete</span>
                              </div>
                              
                             <h3 className="font-bold text-lg">{props.title}</h3>

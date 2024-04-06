@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './moveeCard'
+import FavCard from './favMovieCard'
 import Nav from './moveeNav'
 
 
@@ -54,6 +55,11 @@ function App() {
     }
   }
 
+  const removeFav=(movId)=>{
+    const removedFavList = favs.filter(movie => movie.imdbID !== movId)
+    setFavs(removedFavList)
+  }
+
 
 
 
@@ -85,7 +91,7 @@ function App() {
         {
           favs.map((fav) => (
             <div key={fav.imdbID}>
-              <Card addFav={addToFav} movieObj={fav} poster={fav.Poster} title={fav.Title} movieId={fav.imdbID} />
+              <FavCard remove={removeFav} movieObj={fav} poster={fav.Poster} title={fav.Title} movieId={fav.imdbID} />
             </div>
           ))
         }

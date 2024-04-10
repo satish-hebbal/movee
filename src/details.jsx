@@ -6,7 +6,7 @@ export default function DetailBox({movie, onClose}) {
 
     useEffect(() => {
         if (movie && movie.imdbID) {
-            console.log(movie.imdbID)
+            console.log("movie.Title")
             fetch(`http://www.omdbapi.com/?i=${movie.imdbID}&plot=full&apikey=69017a0d`)
                 .then(response => response.json())
                 .then(data => {
